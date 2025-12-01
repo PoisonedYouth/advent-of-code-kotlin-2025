@@ -6,10 +6,25 @@ kotlin {
     jvmToolchain(21)
 }
 
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(kotlin("test"))
+}
+
 sourceSets {
     main {
         kotlin.srcDir("src")
     }
+    test {
+        kotlin.srcDir("test")
+    }
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
 
 tasks {
