@@ -4,55 +4,53 @@ import println
 import readInput
 
 fun main() {
-    fun Int.increment(number: Int): Int{
-        return (this + number) % 100
+    fun Int.dialRight(number: Int): Int{
+        return (this + number).mod(100)
     }
 
-    fun Int.decrement(number: Int): Int{
-        return ((this - number) % 100 + 100) % 100
+    fun Int.dialLeft(number: Int): Int{
+        return ((this - number).mod(100) + 100).mod(100)
     }
 
     fun part1(input: List<String>): Int {
-        var counter = 0
+        var clicks = 0
         input.fold(50) { acc, s ->
             val direction = s.first()
-            val number = s.drop(1).toInt()
+            val dials = s.drop(1).toInt()
             val result = when(direction){
                 'R' -> {
-                    acc.increment(number)
+                    acc.dialRight(dials)
                 }
                 'L' -> {
-                    acc.decrement(number)
+                    acc.dialLeft(dials)
                 }
                 else -> error("Invalid direction: $direction")
             }
-            if (result == 0) counter++
+            if (result == 0) clicks++
             result
         }
-        return counter
+        return clicks
     }
 
     fun part2(input: List<String>): Int {
-        var counter = 0
+        var clicks = 0
         input.fold(50) { acc, s ->
             val direction = s.first()
             val number = s.drop(1).toInt()
             val result = when(direction){
                 'R' -> {
-                    counter += (acc + number) / 100
-                    acc.increment(number)
+                    clicks += (acc + number) / 100
+                    acc.dialRight(number)
                 }
                 'L' -> {
-                    if (acc < number) {
-                        counter += 1 + (number - acc - 1) / 100
-                    }
-                    acc.decrement(number)
+                    clicks += (number - acc + 99) / 100
+                    acc.dialLeft(number)
                 }
                 else -> error("Invalid direction: $direction")
             }
             result
         }
-        return counter
+        return clicks
     }
 
     // Read the input from the `src/Day01.txt` file.
