@@ -53,7 +53,7 @@ fun main() {
         return clicks
     }
 
-    // Read the input from the `src/Day01.txt` file.
+    // Read the input from the `src/Day02.txt` file.
     val input = readInput("day01/Day01")
     part1(input).println()
     part2(input).println()
