@@ -83,7 +83,7 @@ fun main() {
     check(part1(testInput) == 13L)
     check(part2(testInput) == 43L)
 
-    // Read the input from the `src/Day05.txt` file.
+    // Read the input from the `src/Day04.txt` file.
     val input = readInput("day04/Day04")
     part1(input).println()
     part2(input).println()
